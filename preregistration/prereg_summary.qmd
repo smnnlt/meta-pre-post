@@ -1,0 +1,33 @@
+---
+title: "Preregistration Summary for 'Quantifying Change: Challenges and Strategies in Effect Size Determination for Exercise Intervention Meta-Analyses'"
+author: "Simon Nolte"
+date: today
+format: 
+  pdf:
+    link-citations: true
+mainfont: Arial
+bibliography: ../references.bib
+csl: ../apa.csl
+---
+
+*This document will be published on the Open Science Framework under a [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/) license. It is accompanied by a more detailed preregistration that follows the 'Inclusive Systematic Review Registration Form' [@vandenakker2023].*
+
+------------------------------------------------------------------------
+
+Meta-analyses represent the highest level of evidence in exercise science, yet methodological flaws are often present [@kadlec2023; @hill2023]. One potentially important methodological aspect of meta-analyses of exercise interventions with a two-group pre-post design is the choice of effect size calculation strategies. This project will review the effect size calculation methods used in recently published exercise intervention meta-analyses, demonstrate the impact of different calculation methods on meta-analysis outcomes through a case study, and provide recommendations for selecting appropriate effect size calculation methods and parameters.
+
+For the systematic review of published literature, we will search for all articles containing the phrase "meta-analysis" in their title, published in 2024, in journals which published the 20 most-cited meta-analyses in strength and conditioning research according to @kadlec2023. Screening will occur in two rounds: blinded abstract screening and non-blinded full-text screening. Articles that do not include at least one meta-analysis of an exercise intervention in a two-group pre-post design will be excluded. Two independent researchers will conduct the screening. In cases of disagreement on exclusion decisions, a third independent researcher will resolve the conflict. If fewer than 100 articles remain after screening, we will extend the search range by including articles published in the preceding year(s) until the threshold is met.
+
+Data extraction occurs in three phases. First, a researcher extracts the reported effect size calculation method and related parameters from the meta-analysis. Second, the same researcher determines the actually used effect size calculation method by recalculating a single effect size measure from the meta-analysis. Third, an independent researcher validates all extracted data. If the independent researcher decides not to approve the validation, the original researcher must revise the extraction based on the validation comments until it is successfully validated.
+
+The primary outcome of the review is the method actually used for effect size calculation, along with any imputation parameters, if applicable. Secondary outcomes are the reported effect size calculation method, the justification provided for the chosen method, and the addressing of baseline imbalances.
+
+We will count the frequency of specific methods used for effect size determination. Additionally, we will calculate the percentage of studies with missing, incomplete, incorrect, or correct reporting of their methods. The justifications provided for the chosen methods will be qualitatively assessed. Finally, we will exploratively analyze, whether the choice of methods varies depending on how baseline imbalances are addressed.
+
+As a case study, we will reanalyze the meta-analysis by @oliveira2024, specifically their main finding that endurance exercise interventions with a polarized training intensity distribution result in greater improvements in maximum oxygen uptake compared to interventions with other intensity distributions. Our reanalysis will focus on the underlying meta-analysis of this finding (Fig. 4 in @oliveira2024), after correcting for double- or triple-counting of studies.
+
+We will apply different methods for effect size calculation, including ANCOVA, change scores, and post scores. For the ANCOVA and change score methods, we will contact the authors of the original studies to obtain missing individual participant data and/or summary measures. For the change score method, we will use different approaches to imputing the standard deviation of change scores, using both fixed imputation parameters and informed parameters. The informed parameters will be derived from a set of studies investigating the effects of exercise interventions on maximum oxygen uptake, which allow for the recalculation of pre-post correlations [@renwick2024]. We will calculate the overall mean effect size and its 95%-confidence interval for the different methods of calculating the effect sizes and compare their conclusions in regard to the original research hypothesis by assessing whether the confidence intervals overlap with an effect size of zero.
+
+Based on the findings from the review, the case study, and the informed imputation parameters, we will offer recommendations for calculating effect size measures in meta-analyses of exercise interventions.
+
+### References

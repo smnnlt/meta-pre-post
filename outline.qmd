@@ -1,0 +1,18 @@
+---
+title: "Quantifying Change: Challenges and Strategies in Effect Size Determination for Exercise Intervention Meta-Analyses"
+author: "[Simon Nolte](mailto:s.nolte@dshs-koeln.de)"
+format: 
+  pdf:
+    link-citations: true
+    fontsize: 11pt
+colorlinks: false
+mainfont: Arial
+---
+
+Meta-analyses are frequently among the most cited research items in exercise science and play a crucial role in guiding training practices and informing future research. However, methodological flaws in exercise science meta-analyses are common ([Kadlec et al., 2023](https://doi.org/10.1007/s40279-022-01766-0); [Hill, 2023](https://doi.org/10.1123/jsep.2023-0076)). A frequently overlooked but potentially important aspect in many exercise intervention meta-analyses is the method used to calculate effect sizes and their confidence intervals for studies with continuous outcomes and two groups (e.g., treatment and control) that include pre- and post-measurements.
+
+For analyzing group comparisons with pre- and post-measurements, three methods are commonly used: ANCOVA, change score analysis, and post-score analysis ([Fu & Holmer, 2016](https://doi.org/10.1016/j.jclinepi.2016.01.034)). Each of these approaches varies in statistical power based on specific data characteristics and relies on different input variables. These input variables may be reported in the primary literature or need to be imputed for meta-analysis purposes. In the absence of universal guidelines, diverse approaches and imputation parameters may be employed in meta-analytical practice. To date, no systematic review exists of the methods used to determine effect sizes in published exercise intervention meta-analyses. 
+
+This project aims to conduct a systematic review of recently published meta-analyses in exercise science. We will extract the reported methods for effect size determination and data imputation and verify them through exemplary recalculations. Using a case study, we demonstrate how variations in effect size determination and data imputation methods can lead to different conclusions in meta-analysis outcomes. By reviewing methodological literature and reanalyzing original exercise studies to obtain informed imputation parameters, we provide recommendations for calculating effect sizes in meta-analyses of exercise interventions.
+
+\pagenumbering{gobble}
