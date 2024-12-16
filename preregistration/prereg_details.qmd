@@ -90,8 +90,7 @@ Effect size determination method used.
 
 -   Effect size determination method reported
 -   Justification for used method of effect size determination
--   Criteria/assessment of baseline imbalances for studies included in the meta-analysis
--   Effect size measure (mean difference, standardized mean difference)
+-   Criteria/assessment of baseline imbalances for studies included in the meta-analysis (e.g. including only randomized controlled trials, qualitative rating of bias by missing randomization)
 
 ### Software
 
@@ -161,19 +160,23 @@ We will conduct one single literature search in January 2025, which will not be 
 
 ### Search strategy justification
 
-Our aim is to map current methodological practices in exercise science meta-analyses. We include only recent articles, as developments in software and methodological knowledge may have led to changes in the literature, and we seek to depict the current state of the field. We search for meta-analyses within a subset of sports science journals that we expect to represent high-quality, current research, as indicated by their publication of highly cited meta-analyses in strength and conditioning research [@kadlec2023]. To focus on relevant studies, we limit our search to articles with the phrase "Meta-Analysis" in the title, assuming this terminology is standard for meta-analyses and helps filter out systematic reviews and original studies that do not contain a meta-analysis.
+Our aim is to map current methodological practices in exercise science meta-analyses. We include only recent articles, as developments in software and methodological knowledge may have led to changes in the literature, and we seek to depict the current state of the field. We search for meta-analyses within a subset of sports science journals that we expect to represent high-profile, current research, as indicated by their publication of highly cited meta-analyses in strength and conditioning research [@kadlec2023]. To focus on relevant studies, we limit our search to articles with the phrase "Meta-Analysis" in the title, assuming this terminology is standard for meta-analyses and helps filter out systematic reviews and original studies that do not contain a meta-analysis.
 
 ## Screening
 
 ### Screening stages
 
-1.  Title and abstract screening
+1.  Automated screening for abstracts
+    
+    *We remove articles that do not have an abstract, as these are very likely to be commments and corrections to meta-analyses*
 
-2.  Full-text retrieval and screening
+2.  Title and abstract screening
+
+3.  Full-text retrieval and screening
 
     *If less than 100 results remain after step 2, we will extend the date range of the search by one previous year. This step may be repeated until a total of 100 results remain.*
 
-3.  Data extraction
+4.  Data extraction
 
 ### Screened fields / blinding
 
@@ -219,15 +222,15 @@ When they later encounter errors in their screening, researchers can update thei
 
 See @fig-extract.
 
-![Extraction criteria and instructions in the review web platform](extraction_instructions.png){#fig-extract fig-align="center"}
+![Extraction criteria and instructions in the review web platform. View review.snolte.com/extraction_instructions.html for more details.](extraction_instructions.png){#fig-extract fig-align="center"}
 
 ### Extraction stages
 
 Data extraction is conducted in three stages:
 
 1.  **Full-text data extraction:** One researcher extracts the reported characteristics of each article.
-2.  **Recalculation:** The same researcher attempts to recalculate an effect size for one study included in the meta-analysis. This study is selected as the first (top) study in the first forest plot that meets the screening criteria (i.e., a forest plot representing a pre-post group comparison design). If a different study is used for the reproducibility check, the reason is documented. If individual study effect sizes are not presented in the meta-analysis, recalculation is deemed infeasible.
-3.  **Validation:** An independent researcher reviews the extraction results. Using an annotated article full text, this researcher decides whether to validate the initial data extraction or to suggest changes. If changes are suggested, the article returns to Stage 1, where the original researcher re-evaluates their extraction results.
+2.  **Recalculation:** The same researcher attempts to recalculate an effect size for one study included in the meta-analysis. This study is selected with a pseudorandom number generator from the studies in the first forest plot that meets the screening criteria (i.e., a forest plot representing a pre-post group comparison design). If a different study is used for the reproducibility check, the reason is documented. If individual study effect sizes are not presented in the meta-analysis, recalculation is deemed infeasible.
+3.  **Validation:** An independent researcher reviews the extraction results. Using an annotated article full text, this researcher decides whether to validate the initial data extraction or to suggest changes. If changes are suggested, the article returns to Stage 1, where the first extractor re-evaluates their extraction results.
 
 ### Extractor instructions
 
@@ -235,11 +238,11 @@ See @fig-extract.
 
 ### Extractor blinding
 
-The researcher performing the validation is blinded to who performed the data extraction. Otherwise, no blinding applies.
+The researcher performing the validation is blinded to who performed the data extraction. For the subset of studies that undergo a extraction reliability check, both extractors work independently.
 
 ### Extraction reliability
 
-We perform a validation stage to check for potential issues in the data extraction process.
+We perform a validation stage to check for potential issues in the data extraction process. On a subset of the first 20 studies of data extraction, we perform an additional test of extraction reliability by having two independent researchers perform the data extraction (instead of one extractor and one validator). The two extractors will resolve conflicts by discussion.
 
 ### Extraction reconciliation
 
@@ -247,7 +250,7 @@ If, during the validation phase, researchers find the data extraction results er
 
 ### Extraction procedure justification
 
-For economic reasons, a single researcher will perform the initial data extraction. To minimize errors, we use an independent validation procedure. Additionally, we implement a recalculation stage to ensure that the reported analytical characteristics align with those actually applied in the included studies.
+For economic reasons, a single researcher will perform the initial data extraction for most of the included meta-analyses. To minimize errors, we use an independent validation procedure. Additionally, we implement a recalculation stage to ensure that the reported analytical characteristics align with those actually applied in the included studies.
 
 ### Data management and sharing
 
@@ -273,7 +276,7 @@ To derive a reasonable set of imputation parameters for pre-post correlations, w
 
 ### Reanalysis
 
-We will recalculate the meta-analysis presented in Fig. 4 of @oliveira2024 after correcting for the multiple counting of effect sizes. This will involve combining groups when multiple control groups exist and selecting the most frequently studied exercise type when multiple exercise conditions are reported for a single study. Except for the method of effect size calculation, we will follow the analytical decisions made by @oliveira2024, such as using the standardized mean difference and a random-effects meta-analysis.
+We will recalculate the meta-analysis presented in Fig. 4 of @oliveira2024 after correcting for the multiple counting of effect sizes. The reanalysis will involve combining groups when multiple control groups exist and selecting the most frequently studied exercise type when multiple exercise conditions are reported for a single study. Except for the method of effect size calculation, we will follow the analytical decisions made by @oliveira2024, such as using the standardized mean difference and a random-effects meta-analysis.
 
 Our recalculation will apply different approaches to effect size calculation, including ANCOVA, post scores, and change scores with different imputation parameters. The specific set of methods employed will depend on data availability and the findings of the systematic review, which will indicate prominent methods in current research.
 
