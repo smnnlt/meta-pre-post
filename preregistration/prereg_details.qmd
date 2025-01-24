@@ -24,11 +24,11 @@ Sport Science; Sports Medicine; Meta-Research
 
 'Quantifying Change: Challenges and Strategies in Effect Size Determination for Exercise Intervention Meta-Analyses'
 
-### Authors / Contributors
+### Authors / Contributors (in alphabetical order)
 
-*TO-DO*
-<!-- Jenny Murphy^1^, Simon Nolte^2,3^, Oliver Jan Quittmann^3^, Robert Rein^2^, Theresa Siepe^3^, ??? -->
-<!-- ^1^School of Biological, Health and Sport Sciences, Technological University Dublin, Tallaght, Dublin, Ireland ^2^Institute of Exercise Training and Sport Informatics, German Sport University Cologne ^2^Institute of Movement and Neurosciences, German Sport University Cologne -->
+Jenny Murphy^1^, Simon Nolte^2,3^, Oliver Jan Quittmann^3^, Robert Rein^2^, Theresa Siepe^3^
+
+^1^School of Biological, Health and Sport Sciences, Technological University Dublin, Tallaght, Dublin, Ireland ^2^Institute of Exercise Training and Sport Informatics, German Sport University Cologne ^2^Institute of Movement and Neurosciences, German Sport University Cologne
 
 ### Tasks and Roles
 
@@ -40,7 +40,7 @@ Conceptualization; Data curation; Formal Analysis; Software; Investigation; Meth
 
 ### Type of Review
 
-Methodological review, with additional analysis of an example case (see @sec-example).
+Methodological review, with additional analysis of an example case (see section 'Example case').
 
 ### Review Stages
 
@@ -52,11 +52,11 @@ Before search; the project has not started yet.
 
 ### Start date
 
-01 Jan 2025
+01 Feb 2025
 
 ### End date
 
-31 Mar 2025 (for data extraction)
+31 Jul 2025 (for data extraction)
 
 ### Background
 
@@ -129,14 +129,14 @@ PubMed via the `rentrez` package [@winter2017].
 Inclusion:
 
 -   Only research published in one of the journals that published the 20 most cited meta-analyses in strength and conditioning research according to @kadlec2023.
--   Only research published in 2024 (date of print publication). Note that this may be expanded based on the number of included articles (see @sec-samplesize).
+-   Only research published in 2024 (date of print publication). Note that this may be expanded based on the number of included articles (see section 'Sampling and sampling size').
 -   Only research that contains the phrase "Meta-Analysis" in its title.
 
 ### Query strings
 
 `((("_JOURNALNAME1_"[Journal]) OR ("_JOURNALNAME2_)) AND (("2024/01/01"[Date - Publication] : "2024/12/31"[Date - Publication]))) AND (Meta-Analysis[Title])`
 
-Replace `_JOURNALNAMEX_` by the name of each journal. Adjust date range if necessary (see section @sec-samplesize)
+Replace `_JOURNALNAMEX_` by the name of each journal. Adjust date range if necessary (see section 'Sampling and sampling size')
 
 ### Search validation
 
@@ -148,7 +148,7 @@ We will determine the number of retrieved articles per journal and check the num
 
 ### Procedures to contact authors
 
-We will not contact any author during the review. We may contact authors during the case study (see @sec-example).
+We will not contact any author during the review. We may contact authors during the case study (see section 'Example case').
 
 ### Results of contacting authors
 
@@ -210,7 +210,7 @@ We only include articles that match the research design we are investigating (me
 
 ### Data management and sharing
 
-We will store the initial search results in a `csv` file. Results of screening and data extraction will be stored in the data base back-end of the web platform and can be exported. All data and analysis code will be made publicly available on GitHub.
+Initial search results will be stored in a csv file containing data about XYZ. Results of screening and data extraction will be stored in the database and will be later exported. All data and analysis code will be made publicly available under a XYZ license on GitHub repository.
 
 ### Miscellaneous screening details
 
@@ -226,7 +226,7 @@ See @fig-extract.
 
 ### Extraction stages
 
-Data extraction is conducted in three stages:
+Data extraction will be conducted in three stages:
 
 1.  **Full-text data extraction:** One researcher extracts the reported characteristics of each article.
 2.  **Recalculation:** The same researcher attempts to recalculate an effect size for one study included in the meta-analysis. This study is selected with a pseudorandom number generator from the studies in the first forest plot that meets the screening criteria (i.e., a forest plot representing a pre-post group comparison design). If a different study is used for the reproducibility check, the reason is documented. If individual study effect sizes are not presented in the meta-analysis, recalculation is deemed infeasible.
@@ -238,7 +238,7 @@ See @fig-extract.
 
 ### Extractor blinding
 
-The researcher performing the validation is blinded to who performed the data extraction. For the subset of studies that undergo a extraction reliability check, both extractors work independently.
+The researcher performing the validation is blinded to who performed the data extraction. For the subset of studies that undergo an extraction reliability check, both extractors will work independently.
 
 ### Extraction reliability
 
@@ -258,7 +258,7 @@ The data extraction results will be stored in the data base back-end of the web 
 
 ## Synthesis and quality assessment
 
-As this is a methodological (scoping) review, we will not perform any systematic quality assessment of the included research. Instead we will count the frequency of specific methods used for effect size determination. Additionally, we will calculate the percentage of studies with missing, incomplete, incorrect, or correct reporting of their methods. The justifications provided for the chosen methods will be qualitatively assessed. Finally, we will exploratively analyze, whether the choice of methods varies depending on how baseline imbalances are addressed.
+As this is a methodological (scoping) review, we will not perform any systematic quality assessment of the included research. Instead we will describe the proportion (along with its 95%-confidence interval) of specific methods used for effect size determination. Additionally, we will calculate the percentage of studies with missing, incomplete, incorrect, or correct reporting of their methods. Reporting is defined as correct if the exact methods described lead to a successful recalculation of an individual effect size; incomplete means that further assumptions (about parameters and/or calculation methods) lead to a successful recalculation; incorrect if a recalculation given the reported methods is not possible; missing if no information on the used methods is given. The justifications provided for the chosen methods will be qualitatively assessed.
 
 ## Example case {#sec-example}
 
@@ -266,7 +266,7 @@ We will use an example meta-analysis that matches the review inclusion criteria 
 
 ### Study selection
 
-For the case study, we use the article by @oliveira2024, as it served as the motivating example for the project lead (SN) to initiate this research project. While reviewing the meta-analysis, he identified a triple-counting of studies in the forest plot of the article's main finding (Fig. 4 in @oliveira2024). Additionally, attempts to reproduce the meta-analysis revealed discrepancies, as the standard deviations of change scores reported in the meta-analysis could not be directly reproduced. Through communication with the lead author, he was able to reconstruct the (previously unreported) method used by the authors. However, this raised further questions about whether altering the methods for effect size calculation might influence the conclusions of the meta-analysis.
+For the case study, we use the article by @oliveira2024, as it matches our inclusion criteria and stands examplary for meta-analyses of exercise interventions with a two-group pre-post design.
 
 ### Data Extraction
 
@@ -280,6 +280,6 @@ We will recalculate the meta-analysis presented in Fig. 4 of @oliveira2024 after
 
 Our recalculation will apply different approaches to effect size calculation, including ANCOVA, post scores, and change scores with different imputation parameters. The specific set of methods employed will depend on data availability and the findings of the systematic review, which will indicate prominent methods in current research.
 
-For each effect size calculation method, we will calculate the overall mean effect size and its 95%-confidence interval. These results will be compared to evaluate the original research hypothesis by determining whether the confidence intervals overlap with an effect size of zero.
+For each effect size calculation method, we will calculate the overall mean effect size and its 95%-confidence and prediction intervals. These results will be compared to evaluate the original research hypothesis by determining whether the confidence and prediction intervals overlap with an effect size of zero.
 
 ## References
