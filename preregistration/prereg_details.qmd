@@ -28,7 +28,7 @@ Sport Science; Sports Medicine; Meta-Research
 
 Daniel Memmert^1^, Jenny Murphy^2^, Simon Nolte^1,3^, Oliver Jan Quittmann^3^, Robert Rein^1^, Theresa Siepe^3^
 
-^1^Institute of Exercise Training and Sport Informatics, German Sport University Cologne ^2^School of Biological, Health and Sport Sciences, Technological University Dublin, Tallaght, Dublin, Ireland  ^3^Institute of Movement and Neurosciences, German Sport University Cologne
+^1^Institute of Exercise Training and Sport Informatics, German Sport University Cologne ^2^School of Biological, Health and Sport Sciences, Technological University Dublin, Tallaght, Dublin, Ireland ^3^Institute of Movement and Neurosciences, German Sport University Cologne
 
 ### Tasks and Roles (preliminary)
 
@@ -50,7 +50,7 @@ Before search; the project has not started yet.
 
 ### Start date
 
-01 Feb 2025
+12 Feb 2025
 
 ### End date
 
@@ -58,9 +58,9 @@ Before search; the project has not started yet.
 
 ### Background
 
-Meta-analyses are frequently among the most cited research items in sports science and play a crucial role in guiding training practices and informing future research. However, methodological flaws in sports science meta-analyses are common [@kadlec2023; @hill2023]. A frequently overlooked but potentially important aspect in many exercise intervention meta-analyses is the method used to calculate effect sizes and their confidence intervals for studies with with continuous outcomes and two groups (e.g., treatment and control) that include pre- and post-measurements.
+Meta-analyses are frequently among the most cited research items in sports science and play a crucial role in guiding training practices and informing future research. However, methodological flaws in sports science meta-analyses are common [@kadlec2023; @hill2023]. A frequently overlooked but potentially important aspect in many exercise intervention meta-analyses is the method used to calculate effect sizes and their confidence intervals for studies with continuous outcomes and two groups (e.g., treatment and control) that include pre- and post-measurements.
 
-For analyzing group comparisons with pre- and post-measurements, three methods are commonly used: ANCOVA, change score analysis, and post score analysis [@fu2016]. Each of these approaches varies in statistical power based on specific data characteristics and relies on different input variables. These input variables may be reported in the primary literature or need to be imputed for meta-analysis purposes. In the absence of universal guidelines, diverse approaches and imputation parameters may be employed in meta-analytical practice.
+For analyzing group comparisons with pre- and post-measurements, three methods are commonly used: ANCOVA, change score analysis, and post-measurement score analysis [@fu2016]. Each of these approaches varies in statistical power based on specific data characteristics and relies on different input variables. These input variables may be reported in the primary literature or need to be imputed for meta-analysis purposes. In the absence of universal guidelines, diverse approaches and imputation parameters may be employed in meta-analytical practice.
 
 To date, no systematic review exists of the methods used to determine effect sizes in published exercise intervention meta-analyses. Since different analytical methods can lead to varying conclusions [@fu2016], the use of a variety of methods may indicate a lack of robustness in many meta-research findings within exercise science. A systematic review, coupled with a review of available methodological literature, could provide valuable recommendations for sports scientists on calculating effect sizes in exercise intervention meta-analyses.
 
@@ -78,7 +78,7 @@ No formal hypotheses are tested. We anticipate that researchers use a variety of
 
 ### Dependent variable(s) / outcome(s) / main variable(s)
 
-Effect size determination method used.
+Effect size determination method used (calculation method of the individual study effect sizes and their confidence intervals).
 
 ### Independent variable(s) / interventions(s) / treatment(s)
 
@@ -154,7 +154,7 @@ We will not contact any author during the review. We may contact authors during 
 
 ### Search expiration and repetition
 
-We will conduct one single literature search in January 2025, which will not be repeated.
+We will conduct one single literature search in February 2025, which will not be repeated.
 
 ### Search strategy justification
 
@@ -165,7 +165,7 @@ Our aim is to map current methodological practices in exercise science meta-anal
 ### Screening stages
 
 1.  Automated screening for abstracts
-    
+
     *We remove articles that do not have an abstract, as these are very likely to be commments and corrections to meta-analyses. We also exclude articles with titles that begin with one of these phrases: "comment on", "letter to". "response to", "correction to".*
 
 2.  Title and abstract screening
@@ -208,7 +208,7 @@ We only include articles that match the research design we are investigating (me
 
 ### Data management and sharing
 
-Initial search results will be stored in a csv file containing data about XYZ. Results of screening and data extraction will be stored in the database and will be later exported. All data and analysis code will be made publicly available under a XYZ license on GitHub repository.
+Initial search results will be stored in a csv file containing data about the retrieved studies. Results of screening and data extraction will be stored in the database and will be later exported. All data and analysis code will be made publicly available under a CC-BY or MIT license on a GitHub repository.
 
 ### Miscellaneous screening details
 
@@ -264,11 +264,11 @@ We will use an example meta-analysis that matches the review inclusion criteria 
 
 ### Study selection
 
-For the case study, we use the article by @oliveira2024, as it matches our inclusion criteria and stands examplary for meta-analyses of exercise interventions with a two-group pre-post design.
+For the case study, we use the article by @oliveira2024, as it matches our inclusion criteria and stands exemplary for meta-analyses of exercise interventions with a two-group pre-post design.
 
 ### Data Extraction
 
-We will extract all reported summary measures from the original studies included in Fig. 4 of @oliveira2024. For missing summary measures (e.g., pre-post correlations or change score standard deviations) and individual data points, we will attempt to obtain the necessary information by extracting data from figures and/or contacting the authors of the respective articles.
+We will extract all reported summary measures from the original studies included in Fig. 4 of @oliveira2024. For missing summary measures (e.g., pre-post correlations or change score standard deviations) and individual data points, we will attempt to obtain the necessary information by extracting data from figures and/or contacting the authors of the respective articles. Some summary measures may also be available from the article by @rosenblat2025.
 
 To derive a reasonable set of imputation parameters for pre-post correlations, we will extract these measures from a set of studies investigating exercise interventions targeting the same outcome parameter as @oliveira2024 (maximum oxygen uptake). This set of studies is drawn from the analysis conducted by @renwick2024. Specifically, we will extract or recalculate all pre-post correlations from the studies included in @renwick2024 to determine informed imputation parameters (e.g., the median pre-post correlation) and to establish a full distribution of correlations.
 
