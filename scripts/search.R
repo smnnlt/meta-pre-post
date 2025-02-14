@@ -1,6 +1,8 @@
 library(rentrez)
 library(RMariaDB)
 
+# search done on 13 Feb 2025
+
 # Journals:
 # Sports Medicine
 # Journal of Strength & Conditioning Research
@@ -15,8 +17,14 @@ search <- rentrez::entrez_search(
   term = '((("Sports Med"[Journal]) OR ("J Strength Cond Res"[Journal]) OR ("Int J Sports Physiol Perform"[Journal]) OR ("Br J Sports Med"[Journal]) OR ("J Sci Med Sport"[Journal]) OR ("J Sports Sci"[Journal])) AND (("2024/01/01"[Date - Publication] : "2025/01/01"[Date - Publication]))) AND (Meta-Analysis[Title])',
   retmax = 500
 )
+# search for year 2023
+search23 <- rentrez::entrez_search(
+  db = "pubmed",
+  term = '((("Sports Med"[Journal]) OR ("J Strength Cond Res"[Journal]) OR ("Int J Sports Physiol Perform"[Journal]) OR ("Br J Sports Med"[Journal]) OR ("J Sci Med Sport"[Journal]) OR ("J Sports Sci"[Journal])) AND (("2023/01/01"[Date - Publication] : "2024/01/01"[Date - Publication]))) AND (Meta-Analysis[Title])',
+  retmax = 500
+)
 
-ids <- search$ids
+ids <- c(search$ids, search23$id)
 n <- length(ids)# initial number of results
 
 get_details <- function(i) {
@@ -38,10 +46,14 @@ get_details <- function(i) {
 }
 
 d <- purrr::list_rbind(lapply(seq_len(length(ids)), get_details))
+# remove data retrival errors
+d <- d[!duplicated(d$id),]
+# remove duplicate entries
+d <- d[!duplicated(d$doi),]
 
 # total number of search results
 ns <- nrow(d)
-if (ns != n) warning("Search Details retrieved different number of results.")
+#if (ns != n) warning("Search Details retrieved different number of results.")
 
 # remove studies without abstract
 dr <- d[!is.na(d$abstract),]
@@ -61,6 +73,9 @@ dr$doi <- paste0("doi.org/", dr$doi)
 
 # print number of studies:
 cat("Search results: ", ns, "\nAfter automated screening: ", nr)
+
+# Search results:  226 
+# After automated screening:  209
 
 # print number of studies by journal
 table(dr$journal)
