@@ -1,5 +1,11 @@
-library(rentrez)
-library(RMariaDB)
+## Script for the meta-pre-post project
+## Script #1: Article Search
+## written by Simon Nolte in 02/2025
+
+# load packages
+library(rentrez)  # PubMed API
+library(RMariaDB) # Database connection
+library(xml2)     # result parsing
 
 # search done on 13 Feb 2025
 
@@ -11,7 +17,13 @@ library(RMariaDB)
 # Journal of Science and Medicine in Sports
 # Journal of Sports Sciences
 
-# search data base
+# initially we searcher for articles published in the year 2024
+# as stated in the preregistration, the target number of articles included in
+# the data extraction phase was 100. As the initial search (only 2024) 
+# retrieved only ~120 articles, we directly performed an extension of the 
+# search to the year 2023, as stated in the preregistration
+
+# search data base (year 2024)
 search <- rentrez::entrez_search(
   db = "pubmed",
   term = '((("Sports Med"[Journal]) OR ("J Strength Cond Res"[Journal]) OR ("Int J Sports Physiol Perform"[Journal]) OR ("Br J Sports Med"[Journal]) OR ("J Sci Med Sport"[Journal]) OR ("J Sports Sci"[Journal])) AND (("2024/01/01"[Date - Publication] : "2025/01/01"[Date - Publication]))) AND (Meta-Analysis[Title])',
@@ -27,6 +39,7 @@ search23 <- rentrez::entrez_search(
 ids <- c(search$ids, search23$id)
 n <- length(ids)# initial number of results
 
+# function to retrieve article details from PubMed
 get_details <- function(i) {
   xml_full <- rentrez::entrez_fetch(db = "pubmed", id = ids[i], rettype = "xml")
   xml_data <- xml2::read_xml(xml_full)
@@ -45,6 +58,7 @@ get_details <- function(i) {
   out
 }
 
+# get article details
 d <- purrr::list_rbind(lapply(seq_len(length(ids)), get_details))
 # remove data retrival errors
 d <- d[!duplicated(d$id),]
@@ -53,7 +67,6 @@ d <- d[!duplicated(d$doi),]
 
 # total number of search results
 ns <- nrow(d)
-#if (ns != n) warning("Search Details retrieved different number of results.")
 
 # remove studies without abstract
 dr <- d[!is.na(d$abstract),]
