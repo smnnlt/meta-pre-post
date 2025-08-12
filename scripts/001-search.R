@@ -87,7 +87,8 @@ dr$doi <- paste0("doi.org/", dr$doi)
 # print number of studies:
 cat("Search results: ", ns, "\nAfter automated screening: ", nr)
 
-# Search results:  226 
+# Search results:  250
+# Remaining after duplicate removal: 226 
 # After automated screening:  209
 
 # print number of studies by journal

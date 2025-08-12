@@ -2,7 +2,7 @@
 ## Script #3: Extraction Agreement
 ## written by Simon Nolte in 07/2025
 
-# This script organizes and analyzing the parallel extraction procedure
+# This script organizes and analyzes the parallel extraction procedure
 
 #------------------------------------------------------------------------------
 # PART 1: Study Selection
