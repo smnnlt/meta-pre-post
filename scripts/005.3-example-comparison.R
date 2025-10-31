@@ -1,5 +1,5 @@
 ## Script for the meta-pre-post project
-## Script #5.2: Example Case - Comparison of different calculation methods
+## Script #5.3: Example Case - Comparison of different calculation methods
 ## written by Simon Nolte in 08/2025
 
 # Comparing different effect size calculation methods for the MA from Oliveira 
@@ -9,6 +9,7 @@
 library(meta)    # running the meta-analyses
 library(metapp)  # effect size calculation
 library(purrr)   # functional programming
+library(tidyr)   # data wrangling
 library(ggplot2) # visualization
 
 # load data

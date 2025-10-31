@@ -12,7 +12,7 @@ o <- read.csv("data/example/original.csv")  # original data from the forest plot
 ex <- read.csv("data/example/extracted.csv") # extracted data from the original studies
 
 # run random effects meta-analysis with the forest plot data
-m <- metacont(
+m <- meta::metacont(
   n.e, mean.e, sd.e, n.c, mean.c, sd.c, data = o,
   studlab = paste0(name, " et al. (",year, ")", group),
   sm = "SMD", random = TRUE
@@ -113,4 +113,3 @@ qnorm(0.975) * sqrt(8.4^2+10.1^2) / qt(0.975, 12 - 1)
 # pooled SMD (reproduced, extraction corrected): 0.25 [0.01, 0.49]
 
 # but remember that the calculation procedure for the SD is incorrect
-

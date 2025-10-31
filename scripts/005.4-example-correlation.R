@@ -1,5 +1,5 @@
 ## Script for the meta-pre-post project
-## Script #5.3: Example Case - Get reasonable correlation parameter
+## Script #5.4: Example Case - Get reasonable correlation parameter
 ## written by Simon Nolte in 08/2025
 
 library(metapp)
