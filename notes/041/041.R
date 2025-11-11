@@ -5,8 +5,8 @@ library(metapp)
 # Study to recalculate: Jendricke et al. 2019
 # target ES: 0.70 [0.24; 1.16]
 
-n_int <- 37
-n_con <- 40
+n_int <- 40
+n_con <- 37
 
 # try to match the values from MA Tab 1
 # using Tab 2 with converting percentage value to absolute FFM

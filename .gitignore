@@ -46,6 +46,10 @@ notes/022/Hammond022.pdf
 notes/022/Hearris_add.pdf
 notes/022/Hearris_Fig5A.png
 notes/022/hearris_fig5a.tar
+notes/024/Eguchi024.pdf
+notes/024/Elliott_add.pdf
+notes/024/Fang_add.pdf
+notes/024/forest_data.csv
 notes/025/Wolfenden025.pdf
 notes/031/Arthur031.pdf
 notes/031/031.pdf
@@ -81,6 +85,7 @@ notes/039/Fig3_Gabbett.png
 notes/047/Lee_add.pdf
 notes/045/Cormie_add.pdf
 notes/045/045.pdf
+notes/045/LS---10.1519-JSC.0000000000004839-main
 notes/043/Ballin043.pdf
 notes/041/Jendricke041.pdf
 notes/040/Spillane040.pdf
@@ -170,6 +175,8 @@ notes/092/092.pdf
 notes/129/Palmieri129.pdf
 notes/129/129.pdf
 notes/128/128.pdf
+notes/128/dose_response_code.R
+notes/128/PA_hospitals_BJSM_data.xlsx
 notes/126-2/Contreras126-2.pdf
 notes/126-2/40279_2023_1902_MOESM1_ESM.docx
 notes/126-2/126-2.pdf
@@ -306,5 +313,9 @@ notes/200/Kishita_corr.pdf
 notes/200/Griefahn200.pdf
 notes/200/200.pdf
 notes/200/Griefahn_add.pdf
+notes/202/202_es_comparison.png
+notes/202/Markov_2022_dataextract-calculations.xlsx
+notes/202/Markov_2022_dataextract-calculations_annotated.xlsx
+notes/202/Holviala_add.pdf
 backup/*
 db/*

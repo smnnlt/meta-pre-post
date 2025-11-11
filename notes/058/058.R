@@ -50,8 +50,8 @@ smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, n_int, n_con) |> get_ci()
 # use the rounded values
 smd(mean_int_d, mean_con_d, round(sd_int_d, 1), round(sd_con_d, 1), n_int, n_con) |> get_ci()
 # same as above
-# using vartype = 3
-smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, n_int, n_con, vartype = 3) |> get_ci()
+# using vartype = 4
+smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, n_int, n_con, vartype = 4) |> get_ci()
 # perfect match!
 
 # so I could reproduce the ES and its CI as a SMD based on change scores and 

@@ -70,7 +70,7 @@ get_ci(h)
 # just out of interest, what happens if we try to fix a few things:
 # 1. calculate a study level correlation based on the correctly extracted data
 r_con_new <- sdd_to_r(sd_con_pre, sd_con_post, sd_con_d)
-r_new <- mean(r_con_new, r_int)
+r_new <- mean(c(r_con_new, r_int))
 # using this correlation and actual Hedges' g correction
 smcr(mean_con_post, mean_int_post, sd_con_post, sd_int_post, n, r_new, hedges = TRUE) |> get_ci()
 # so the correction does not make any real difference in this specific example
