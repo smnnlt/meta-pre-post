@@ -51,7 +51,7 @@ ipd_sim <- purrr::pmap(
     mean_pre = ex_filt$mean_pre, mean_post = ex_filt$mean_post,
     sd_pre = ex_filt$sd_pre, sd_post = ex_filt$sd_post,
     n = ex_filt$n,
-    study = ex_filt$study, group = ex_filt$group, type = ex_filt$group_type
+    study = ex_filt$study, group = ex_filt$group_type, type = ex_filt$group
   ),
   .f = sim_trial,
   # sets a fixed reasonable correlation for all studies

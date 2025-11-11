@@ -11,9 +11,37 @@ library(metapp)  # effect size calculation
 library(purrr)   # functional programming
 library(tidyr)   # data wrangling
 library(ggplot2) # visualization
+library(lme4)
 
 # load data
 ex <- read.csv("data/example/extracted.csv") # extracted data from the original studies
+ipd <- read.csv("data/example/ipd_sim.csv") # shared/simulated individual participant data
+
+# function to calculate ANCOVA based effect size
+anc2 <- function(subset, data) {
+  d <- data[data$study == subset,] # filter study
+  m <- lm(post ~ pre + group, data = d) # run ANCOVA
+  b <- coef(summary(m))[3,1] # adjusted mean difference
+  # using estimator g_A2 from Hedges et al. 2023
+  n_int <- sum(d$group == "int")
+  n_con <- sum(d$group == "con")
+  es <- metapp::j(nrow(d)-2) * (b / sd(d$post, na.rm = TRUE))
+  var <- (((n_int+n_con)*(1-cor(d$pre, d$post, use = "complete.obs")^2))/(n_int*n_con))+(es^2/(2*(n_int+n_con-2)))
+  data.frame(
+    es = es,
+    var = var
+  )
+}
+
+# anc1 <- function(data) {
+#   m <- lmer(post ~ pre + group + (1 + group|study), data = data) 
+#   es_raw <- fixef(m)[["groupint"]]
+#   es <- es_raw / sd(data$post, na.rm = TRUE) # standardize by post score SD
+#   n_int <- 100
+#   n_con <- 149
+#   var <- (((n_int+n_con)*(1-cor(data$pre, data$post, use = "complete.obs")^2))/(n_int*n_con))+(es^2/(2*(n_int+n_con-2)))
+#   list(es = es, var = var)
+# }
 
 ## STEP 1: Preprocessing -----------------------------------------------------
 
@@ -55,6 +83,9 @@ new$sd_pre[20] <- sp_pre_int$sd
 new$mean_post[20] <- sp_post_int$x
 new$sd_post[20] <- sp_post_int$sd
 
+# remove Seles-Peres running data from IPD
+ipd <- ipd[ipd$type != "running",]
+
 ## STEP 2: Effect size calculation----------------------------------------------
 
 # calculate change scores and different change score standard deviations
@@ -78,6 +109,8 @@ ies$ppc1_05 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$
 ies$ppc1_09 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$sd_pre_int, sd2pre = w$sd_pre_con, n1 = w$n_int, n2 = w$n_con, r = 0.9, type = 1)
 ies$ppc2_05 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$sd_pre_int, sd2pre = w$sd_pre_con, n1 = w$n_int, n2 = w$n_con, r = 0.5, type = 2)
 ies$ppc2_09 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$sd_pre_int, sd2pre = w$sd_pre_con, n1 = w$n_int, n2 = w$n_con, r = 0.9, type = 2)
+# ancova
+ies$anc2 <- purrr::list_rbind(lapply(paste0(tolower(w$name), w$year), anc2, data = ipd))
 
 ## STEP 3: Run meta-analyses----------------------------------------------------
 m <- lapply(ies, function(x) metafor::rma(x$es, x$var))
@@ -100,7 +133,7 @@ es <- purrr::list_rbind(lapply(m, mod_to_es), names_to = "name")
 
 es$label <- c("Post", "Change (r = 0)", "Change (r = 0.5)", "Change (r = 0.7)",
              "Change (r = 0.9)", "ppc1 (r = 0.5)", "ppc1 (r = 0.9)", 
-             "ppc2 (r = 0.5)", "ppc2 (r = 0.9)")
+             "ppc2 (r = 0.5)", "ppc2 (r = 0.9)", "ANCOVA 2-stage")
 
 # show all ES
 ggplot(es, aes(x = es, y = label)) +
@@ -120,7 +153,7 @@ ggplot(es, aes(x = es, y = label)) +
 ggsave("plots/compare_all.png", width = 6.5, height = 4, dpi = 300, bg = "white")
 
 # show selected methods
-ggplot(es[es$name %in% c("post", "change_0", "change_05", "change_07", "change_09", "ppc1_05", "ppc2_05"),], aes(x = es, y = reorder(label, es, decreasing = TRUE))) +
+ggplot(es[es$name %in% c("post", "change_0", "change_05", "change_07", "change_09", "ppc1_05", "ppc2_05", "anc2"),], aes(x = es, y = reorder(label, es, decreasing = TRUE))) +
   geom_vline(xintercept = c(-0.2, 0.2, 0.5, 0.8), linetype = "dotted", color = "gray50") +
   geom_vline(xintercept = 0, color = "gray50") +
   geom_point(size = 3, shape = 18) +
