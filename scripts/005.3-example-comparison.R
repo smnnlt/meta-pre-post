@@ -33,6 +33,17 @@ anc2 <- function(subset, data) {
   )
 }
 
+# function to round with trailing zero (and empty sign if needed)
+rd <- function(x, digits = 0, emptysign = FALSE) {
+  a <- sprintf(paste0("%.", digits, "f"), round(x, digits))
+  if (emptysign) {
+     a <- ifelse(x >= 0, paste0(" ", a), a)
+  }
+  a
+}
+
+
+# one-stage ANCOVA
 # anc1 <- function(data) {
 #   m <- lmer(post ~ pre + group + (1 + group|study), data = data) 
 #   es_raw <- fixef(m)[["groupint"]]
@@ -54,7 +65,7 @@ pms <- is.na(ex$sd_post)
 ex$sd_post[pms] <- ex$sd_pre[pms]
 
 # combine groups
-new <- ex[-c(2,3, 21, 22), ]
+new <- ex[-c(2,3, 23, 24), ]
 
 # combine the Stöggl control groups
 s_pre2 <- metapp::pool_groups(ex$mean_pre[1], ex$mean_pre[2], ex$sd_pre[1], ex$sd_pre[2], ex$n[1], ex$n[2])
@@ -68,23 +79,27 @@ new$mean_post[1] <- s_post3$x
 new$sd_post[1] <- s_post3$sd
 new$n[1] <- s_pre3$n
 
-# combine running and cycling data for Seles-Perez
-sp_pre_con <- metapp::pool_groups(ex$mean_pre[21], ex$mean_pre[23], ex$sd_pre[21], ex$sd_pre[23], ex$n[21], ex$n[23])
-sp_post_con <- metapp::pool_groups(ex$mean_post[21], ex$mean_post[23], ex$sd_post[21], ex$sd_post[23], ex$n[21], ex$n[23])
-sp_pre_int <- metapp::pool_groups(ex$mean_pre[22], ex$mean_pre[24], ex$sd_pre[22], ex$sd_pre[24], ex$n[22], ex$n[24])
-sp_post_int <- metapp::pool_groups(ex$mean_post[22], ex$mean_post[24], ex$sd_post[22], ex$sd_post[24], ex$n[22], ex$n[24])
+# instead of combining the Selles-Peres data from running and cycling for the 
+# same individuals, I only use the data from the most common exercise test 
+# modality, as stated in the preregistration, which is running
 
-new$mean_pre[19] <- sp_pre_con$x
-new$sd_pre[19] <- sp_pre_con$sd
-new$mean_post[19] <- sp_post_con$x
-new$sd_post[19] <- sp_post_con$sd
-new$mean_pre[20] <- sp_pre_int$x
-new$sd_pre[20] <- sp_pre_int$sd
-new$mean_post[20] <- sp_post_int$x
-new$sd_post[20] <- sp_post_int$sd
+# # combine running and cycling data for Seles-Perez
+# sp_pre_con <- metapp::pool_groups(ex$mean_pre[21], ex$mean_pre[23], ex$sd_pre[21], ex$sd_pre[23], ex$n[21], ex$n[23])
+# sp_post_con <- metapp::pool_groups(ex$mean_post[21], ex$mean_post[23], ex$sd_post[21], ex$sd_post[23], ex$n[21], ex$n[23])
+# sp_pre_int <- metapp::pool_groups(ex$mean_pre[22], ex$mean_pre[24], ex$sd_pre[22], ex$sd_pre[24], ex$n[22], ex$n[24])
+# sp_post_int <- metapp::pool_groups(ex$mean_post[22], ex$mean_post[24], ex$sd_post[22], ex$sd_post[24], ex$n[22], ex$n[24])
+# 
+# new$mean_pre[19] <- sp_pre_con$x
+# new$sd_pre[19] <- sp_pre_con$sd
+# new$mean_post[19] <- sp_post_con$x
+# new$sd_post[19] <- sp_post_con$sd
+# new$mean_pre[20] <- sp_pre_int$x
+# new$sd_pre[20] <- sp_pre_int$sd
+# new$mean_post[20] <- sp_post_int$x
+# new$sd_post[20] <- sp_post_int$sd
 
 # remove Seles-Peres running data from IPD
-ipd <- ipd[ipd$type != "running",]
+ipd <- ipd[ipd$type != "cycling",]
 
 ## STEP 2: Effect size calculation----------------------------------------------
 
@@ -134,6 +149,7 @@ es <- purrr::list_rbind(lapply(m, mod_to_es), names_to = "name")
 es$label <- c("Post", "Change (r = 0)", "Change (r = 0.5)", "Change (r = 0.7)",
              "Change (r = 0.9)", "ppc1 (r = 0.5)", "ppc1 (r = 0.9)", 
              "ppc2 (r = 0.5)", "ppc2 (r = 0.9)", "ANCOVA 2-stage")
+es$text <- paste0(rd(es$es, 2), " [", rd(es$ci_lower, 2, TRUE), "; ", rd(es$ci_upper, 2), "]")
 
 # show all ES
 ggplot(es, aes(x = es, y = label)) +
@@ -157,6 +173,7 @@ ggplot(es[es$name %in% c("post", "change_0", "change_05", "change_07", "change_0
   geom_vline(xintercept = c(-0.2, 0.2, 0.5, 0.8), linetype = "dotted", color = "gray50") +
   geom_vline(xintercept = 0, color = "gray50") +
   geom_point(size = 3, shape = 18) +
+  #geom_text(aes(x = 1, label = text)) +
   #geom_errorbarh(aes(xmin = pi_lower, xmax = pi_upper), height = 0.1, color = "gray70") +
   geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper), height = 0.2) +
   coord_cartesian(xlim = c(-0.3, 1)) +  
