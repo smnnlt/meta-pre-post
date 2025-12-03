@@ -2,6 +2,10 @@
 
 library(metapp)
 
+# EDIT AFTER AUTHOR CONTACT:
+# The authors provided a data sheet with the effect sizes and underlying raw 
+# data
+
 # Study to recalculate: Sermaxhaj et al. 2021
 # target ES: -0.295 [x.xx, x.xx]
 
@@ -17,33 +21,65 @@ library(metapp)
 # to me it is totally unclear which values should be used for the recalculation
 
 # try next: Mayorga-Vega et al. (2014)
-# target ES: -0.240
+# target ES: -0.240 (SE: 0.299)
 
-# try difference of mean changes maybe standardized by pre sd
-((18.64-17.05)-(14.57-14.17))/sd_pooled(4.2, 5.64, 23, 22)
-# works for ES
+# using data from Tab 1
+mean_con_pre <- 14.17
+sd_con_pre <- 4.20
+mean_con_post <- 14.57
+sd_con_post <- 4.14
+n_con <- 23
 
-# total group sds do not work
-((18.64-17.05)-(14.57-14.17))/5.11
-((18.64-17.05)-(14.57-14.17))/5.33
+mean_int_pre <- 17.05
+sd_int_pre <- 5.64
+mean_int_post <- 18.64
+sd_int_post <- 5.71
+n_int <- 22
+# matches provided data
 
-# an older MA by the same MA authors using partly the same data shows not only
-# the ES point estimates but as z-values. These can be used to recalculate
-# the var of the ES estimate. Fig 3 of Konrad et al. 2024 J Sport Health Sci
-# gives for Mayorga-Vega 2014:
-# z = -0.810
+# calculate change scores
+mean_con_d <- mean_con_post - mean_con_pre
+mean_int_d <- mean_int_post - mean_int_pre
+# calculate change score SD using software default of r = 0.5
+sd_con_d <- r_to_sdd(sd_con_pre, sd_con_post, 0.5)
+sd_int_d <- r_to_sdd(sd_int_pre, sd_int_post, 0.5)
 
-# as z = ES / SE
-se <- -0.240 / - 0.810
-var <- se^2
-m <- metapp::smd(18.64-17.05, 14.57-14.17, 5.64, 4.2, 22, 23)
-round(m$es, 2) / sqrt(m$var)
-# not exactly
+# calculate SMD
+o <- smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, n_int, n_con, hedges = FALSE)
+o
+sqrt(o$var)
+# perfect match
 
-# try for the next ES if standardization by pre sd is actually correct
+# for verification:
 # I use the next ES that does not use a "combined" measure as indicated in the
 # forest plot. This is: Barbosa et al. (2018)
-((142.26-138.06)-(138.76-139.33))/sd_pooled(11.24, 8.02, 15, 15)
-(140.18-138.06)/11.24
+# target ES -0.182 [SE: 0.366]
 
-# still unclear I tried different things but could not get a match
+# using data from Tab 2 (CON: Cg, INT: SSg, PRE: Pre-1st, POST: 48 h)
+b_mean_con_pre <- 139.33
+b_sd_con_pre <- 8.02
+b_mean_con_post <- 139.36
+b_sd_con_post <- 10.74
+
+b_mean_int_pre <- 138.06
+b_sd_int_pre <- 11.24
+b_mean_int_post <- 140.18
+b_sd_int_post <- 14.32
+
+# using data from Tab 1
+b_n_con <- 15
+b_n_int <- 15
+# matches provided data
+
+# calculate change scores
+b_mean_con_d <- b_mean_con_post - b_mean_con_pre
+b_mean_int_d <- b_mean_int_post - b_mean_int_pre
+# calculate change score SD using software default of r = 0.5
+b_sd_con_d <- r_to_sdd(b_sd_con_pre, b_sd_con_post, 0.5)
+b_sd_int_d <- r_to_sdd(b_sd_int_pre, b_sd_int_post, 0.5)
+
+# calculate SMD
+b_o <- smd(b_mean_int_d, b_mean_con_d, b_sd_int_d, b_sd_con_d, b_n_int, b_n_con, hedges = FALSE)
+b_o
+sqrt(b_o$var)
+# perfect match
