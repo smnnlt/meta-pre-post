@@ -19,3 +19,9 @@ smd(e_mean_post, c_mean_post, e_sd_post, c_sd_post, 14, 15) |> get_ci()
 
 # possibly vartype=3 and Hedges=TRUE but cannot confirm because other options 
 # give almost similar results
+
+# further try to get exact procedure: Nobari 2021
+# target ES. 0.61 [-0.14, 1.36]
+# using data from Tab 1 (post-season, Leg press (kg))
+smd(191.8, 187.5, 5.7, 7.8, 14, 15, vartype = 3) |> get_ci()
+# so hedges = TRUE and vartype = 3 is correct (others did not work perfectly)

@@ -43,8 +43,8 @@ r_to_sdd(0.09, 0.09, 0)
 # would work in theory
 
 # using the data given in the forest plot
-smd(-0.11, -0.10, 0.13, 0.14, 10, 10) |> get_ci()
-# match 
+smd(-0.11, -0.10, 0.13, 0.14, 10, 10, vartype = 3) |> get_ci()
+# match (vartype=3 and vartype=1 both match)
 
 # could reproduce the ES calculation but still unclear about the imputation 
 # procedure
@@ -81,5 +81,5 @@ w_mean_con_d <- w_mean_con_post - w_mean_con_pre # matches data from forest plot
 w_sd_int_d <- r_to_sdd(w_sd_int_pre, w_sd_int_post, 0) # matches
 w_sd_con_d <- r_to_sdd(w_sd_con_pre, w_sd_con_post, 0) # matches
 
-smd(w_mean_int_d, w_mean_con_d, w_sd_int_d, w_sd_con_d, 10, 10) |> get_ci()
-# perfect match
+smd(w_mean_int_d, w_mean_con_d, w_sd_int_d, w_sd_con_d, 10, 10, vartype = 3) |> get_ci()
+# perfect match (vartype=3 and vartype=1 both match)

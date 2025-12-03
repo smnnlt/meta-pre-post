@@ -32,3 +32,10 @@ smd(0.2, 0, sd_avg(1.14, 1.23), sd_avg(1.24, 1.18), 77, 80, hedges = FALSE) |> g
 
 # similar result when using r=0.5 imputation
 smd(0.2, 0, r_to_sdd(1.14, 1.23, 0.5), r_to_sdd(1.24, 1.18, 0.5), 77, 80, hedges = FALSE) |> get_ci()
+
+# using ES from Fig S1b: Lee & Gao 2020
+# target ES: -0.26 [-0.58, 0.06]
+# using data from Tab. 7
+smd(7.2-7.3, 7.5-7.1, r_to_sdd(1.70, 1.97, 0.5), r_to_sdd(2.19, 1.71, 0.5), 77, 80, hedges = FALSE) |> get_ci()
+smd(7.2-7.3, 7.5-7.1, sd_avg(1.70, 1.97), sd_avg(2.19, 1.71), 77, 80, hedges = FALSE) |> get_ci()
+# both almost match

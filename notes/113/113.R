@@ -28,7 +28,7 @@ smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, 13, 13) |> get_ci()
 # not exact
 
 # use rounded SDs
-smd(mean_int_d, mean_con_d, round(sd_int_d, 2), round(sd_con_d, 2), 13, 13) |> get_ci()
+smd(mean_int_d, mean_con_d, round(sd_int_d, 2), round(sd_con_d, 2), 13, 13, vartype = 3) |> get_ci()
 # perfect match!
 
 # use the next study to verify that actually pooled SDs were used (because SD
@@ -56,6 +56,5 @@ s_sd_int_d <- sd_avg(s_sd_int_pre, s_sd_int_post)
 s_sd_con_d <- sd_avg(s_sd_con_pre, s_sd_con_post)
 # matches data from forest plot
 
-smd(s_mean_int_d, s_mean_con_d, s_sd_int_d, s_sd_con_d, 10, 10) |> get_ci()
+smd(s_mean_int_d, s_mean_con_d, round(s_sd_int_d,2), round(s_sd_con_d,2), 10, 10, vartype = 3) |> get_ci()
 # perfect match
-

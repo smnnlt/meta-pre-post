@@ -54,3 +54,13 @@ smd(4.5, 3.2, 0.6, 0.6, 60, 60)
 # have to use exact=FALSE because of a bug in hedges correction for large n
 smd(31.3-27.8, 31.9-29.7, r_to_sdd(10.9, 10.9, 0.7), r_to_sdd(10.9, 11.2, 0.7), 243, 274, exact = FALSE) |> get_ci()
 # perfect match!
+
+# try another to determine hedges correction setting and variance estimator
+# choose one with rather low sample size and easy extraction procedure:
+# Boshuizen et al. 2005
+# target ES: 0.32 [-0.38, 1.01]
+
+# using data from Tab 3 Pretest vs. Posttest, 
+# HG (INT) vs MG (CON) [as per MA Tab 1]
+smd(69.3-56.1, 65.6-57.4, r_to_sdd(19.9, 17.2, 0.7), r_to_sdd(23.1, 20.5, 0.7), 16,16, hedges = FALSE) |> get_ci()
+# perfect match when hedges=FALSE

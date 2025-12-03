@@ -48,5 +48,5 @@ w_sd_con_post <- 0.3
 w_mean_int_d <- w_mean_int_post - w_mean_int_pre
 w_mean_con_d <- w_mean_con_post - w_mean_con_pre
 
-smd(w_mean_int_d, w_mean_con_d, w_sd_int_post, w_sd_con_post, 12, 10) |> get_ci()
-# almost perfect match, just off by 0.01 for each number
+smd(w_mean_int_d, w_mean_con_d, w_sd_int_post, w_sd_con_post, 12, 9, vartype = 2) |> get_ci()
+# perfect match

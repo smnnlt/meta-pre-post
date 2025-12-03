@@ -36,6 +36,11 @@ if (published) {
 sd_pooled(c_sd_pre, e_sd_pre, 4, 7)
 
 # assuming r = 0.5
-ppc(e_mean_post - e_mean_pre, c_mean_post - c_mean_pre, e_sd_pre,  c_sd_pre, n1 = 7, n2 = 4, r = 0.5) |> get_ci()
-# ES matches, CI almost
-
+o <- ppc(e_mean_post - e_mean_pre, c_mean_post - c_mean_pre, e_sd_pre,  c_sd_pre, n1 = 7, n2 = 4, r = 0.5)
+o |> get_ci()
+# ES matches, CI near
+# using ppc1 Becker variance estimator
+b <- ppc(e_mean_post - e_mean_pre, c_mean_post - c_mean_pre, e_sd_pre,  c_sd_pre, n1 = 7, n2 = 4, r1 = 0.5, r2 = 0.5, type = 1, var_becker = TRUE)
+o$var <- b$var
+o |> get_ci()
+# perfect match

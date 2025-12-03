@@ -53,5 +53,5 @@ smd(-949.92, -1007.03, 80.88215131, 133.7392257, 6, 5) |> get_ci()
 # target ES: 0.54 [-0.39, 1.46]
 
 # using data from Tab 4:
-smd(2.1, 0.9, 3.1, 1.0, 8, 11) |> get_ci()
+smd(2.1, 0.9, 3.1, 1.0, 8, 11, vartype = 1) |> get_ci()
 # perfect match
