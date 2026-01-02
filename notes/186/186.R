@@ -67,3 +67,41 @@ sd_int_d <- r_to_sdd(sd_int_pre, sd_int_post, 0.5)
 # now recalculate the SMD:
 smd(mean_con_d, mean_int_d, sd_con_d, sd_int_d, n_con, n_int) |> get_ci()
 # perfect match!
+# but cannot verify variance estimator or hedges correction
+
+# try another study: Ronnestad et al. 2012 (CSA knee flexor)
+# target ES: 0.15 [-0.80, 1.10]
+
+# using sample size from abstract:
+r_n_int <- 11
+r_n_con <- 7  # incorrect in MA Tab 4, but correct in MA forest plot
+
+# other data would need to be extracted from Figures (Fig. 3)
+# but here the goal is only to verify the hedges correction and var estimator,
+# so I will not redo the extraction, but use the extracted data presented in the
+# MA
+
+# I tried to do a quick visual check but could not match the data.
+
+# using the data presented in MA Tab 4:
+
+r_mean_int_pre <- 52.8
+r_sd_int_pre <- 19.7
+r_mean_int_post <- 59.6
+r_sd_int_post <- 20.2
+
+r_mean_con_pre <- 51.7
+r_sd_con_pre <- 18.5
+r_mean_con_post <- 61.6
+r_sd_con_post <- 20.9
+
+r_mean_int_d <- r_mean_int_post - r_mean_int_pre
+r_mean_con_d <- r_mean_con_post - r_mean_con_pre
+r_sd_int_d <- r_to_sdd(r_sd_int_pre, r_sd_int_post, 0.5)
+r_sd_con_d <- r_to_sdd(r_sd_con_pre, r_sd_con_post, 0.5)
+# matches forest plot data (with incorrect rounding)
+
+smd(r_mean_con_d, r_mean_int_d, r_sd_con_d, r_sd_int_d, r_n_con, r_n_int) |> get_ci()
+# hedges=TRUE verified
+# vartype=1 or vartype=3 possible
+

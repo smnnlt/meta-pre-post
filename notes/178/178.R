@@ -23,8 +23,9 @@ smd(mean_int, mean_con, sd_int, sd_con, n, n) |> get_ci()
 # in the original study as .083, but the MA uses 0.83
 
 # use the incorrectly extracted data
-smd(mean_int, mean_con, 10*sd_int, 10*sd_con, n, n) |> get_ci()
+smd(mean_int, mean_con, 10*sd_int, 10*sd_con, n, n, vartype = 3) |> get_ci()
 # perfect match (when considering the reversed sign as faster times are better)
+# vartype=1 would also match
 
 # try the next study to see if also post scores were used:
 # Howe et al. 2017
@@ -56,5 +57,5 @@ smd(ds_mean_int, ds_mean_con, ds_sd_int, ds_sd_con, ds_n, ds_n) |> get_ci()
 # almost perfect
 
 # use the values from the forest plot
-smd(ds_mean_int + 0.01, ds_mean_con - 0.01, ds_sd_int -0.01, ds_sd_con+0.01, ds_n, ds_n) |> get_ci()
+smd(ds_mean_int + 0.01, ds_mean_con - 0.01, ds_sd_int -0.01, ds_sd_con+0.01, ds_n, ds_n, vartype = 3) |> get_ci()
 # perfect match!
