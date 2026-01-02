@@ -28,7 +28,7 @@ smd(mean_int, mean_con, sd_int, sd_con, n_int, n_con, hedges = FALSE) |> get_ci(
 # (the CON group has larger POST values)
 
 
-# I could only determine the confused ES, because I tried the other study:
+# I could only determine the ES, because I tried the other study:
 # Griefahn et al. 2017
 # target ES: 0.026 [-0.702, 0.754]
 

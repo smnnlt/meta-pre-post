@@ -24,8 +24,8 @@ n_con <- 11
 mean_int_d <- mean_int_post - mean_int_pre
 mean_con_d <- mean_con_post - mean_con_pre
 
-sd_int_d <- r_to_sdd(sd_int_pre, sd_int_post, 0.75)
-sd_con_d <- r_to_sdd(sd_con_pre, sd_con_post, 0.75)
+sd_int_d <- r_to_sdd(sd_int_pre, sd_int_post, 0.5)
+sd_con_d <- r_to_sdd(sd_con_pre, sd_con_post, 0.5)
 
 # try change score based MD
 md(mean_int_d, mean_con_d, sd_int_d, sd_con_d, n_int, n_con) |> get_ci()
@@ -60,7 +60,7 @@ md(thom_mean_int, thom_mean_con, thom_sd_int, thom_sd_con, thom_n_int, thom_n_co
 # match for ES point estimate, bit off for CI
 
 # try next study: Tjonna et al. 2008
-# target ES: 10.300 [8.284, 12.316]
+# target ES: 10.300 [8.284, 12.316] #var: 1.058
 
 # using data from Tab 2:
 

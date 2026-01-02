@@ -64,9 +64,11 @@ ppc(rob_mean_int_d, rob_mean_con_d, rob_sd_int_pre, rob_sd_con_pre, 13, 13, r = 
 # target ES: 1.56 [0.62, 2.50]
 # this is a crossover trials, so this may impact the methods used for analysis
 # use VO2peak data from Tab 3 HMB (INT) vs. CON
-smd(0.15, -0.09, 0.15, 0.2, 8, 8) |> get_ci()
-ppc(0.15, -0.09, 0.14, 0.16, 8, 8, r = 0.7) |> get_ci()
-# near but not perfect
+# data presented as mean +- SE (!), seems to be not considered
+smd(0.15, -0.11, 0.14, 0.16, 8, 8) |> get_ci()
+smd(0.15, -0.11, 0.15, 0.23, 8, 8) |> get_ci()
+smd(0.15, -0.11, r_to_sdd(0.14, 0.15, 0.7),r_to_sdd(0.16, 0.23, 0.7), 8, 8) |> get_ci()
+ppc(0.15, -0.11, 0.14, 0.16, 8, 8, r = 0.7) |> get_ci()
 
 # try a last one: O’connor &, Crowe 2003
 # could not retrieve full text
@@ -76,4 +78,6 @@ ppc(0.15, -0.09, 0.14, 0.16, 8, 8, r = 0.7) |> get_ci()
 # using VO2max data from Tab 2
 smd(58.34-50.63, 56.11-51.74, r_to_sdd(2.56, 2.73, 0.7), r_to_sdd(2.73, 3.10, 0.7), 8, 8)
 ppc(58.34-50.63, 56.11-51.74, 2.56, 2.73, 8, 8, r = 0.7) |> get_ci()
-# rather near for ES, but CI is off
+smd(58.34-50.63, 56.11-51.74, 2.56, 2.73, 8, 8) |> get_ci()
+# both rather near for ES, but CI is off
+smd(58.34-50.63, 56.11-51.74, 2.73, 3.10, 8, 8) |> get_ci()

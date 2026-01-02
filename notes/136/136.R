@@ -28,7 +28,7 @@ sd_g2_d <- r_to_sdd(sd_g2_pre, sd_g2_post, 0.5)
 sd_g3_d <- r_to_sdd(sd_g3_pre, sd_g3_post, 0.5)
 
 # calculate SMD
-o1 <- smd(mean_g3_d, mean_g2_d, sd_g3_d, sd_g2_d, n_g3, n_g2)
+o1 <- smd(mean_g3_d, mean_g2_d, sd_g3_d, sd_g2_d, n_g3, n_g2, vartype = 3)
 o1 |> get_ci()
 # perfect match for ES point estimate, CI far off
 
@@ -77,4 +77,4 @@ o2_newvar |> get_ci()
 o1_newvar <- o1
 o1_newvar$var <- sqrt(o1$var)
 o1_newvar |> get_ci()
-# perfect match
+# perfect match (both vartype = 1 and vartype = 3 work)

@@ -38,7 +38,7 @@ d_rm <- function(xd, sdd, n, r) {
 # denominator says (SDpre - SDpre) which is zero
 # this error reduced the formula to r = (SDpre^2*SDpost^2)/(2*SDpre^2*SDpost^2)
 # which reduced to r = 0.5
-# therefore (porbably without knowing) the authors have imputed r = 0.5 for
+# therefore (probably without knowing) the authors have imputed r = 0.5 for
 # every change score SD
 
 mean_am_d <- mean_am_post - mean_am_pre
@@ -47,7 +47,7 @@ es_am <- d_rm(mean_am_d, sd_am_d, 12, 0.5)
 es_am
 # perfect match for morning (AM) within group SMD point estimate
 
-# no test the variance 
+# now test the variance 
 # formula for calculating the variance
 get_v <- function(g, n) {
   # further error in the df calculation

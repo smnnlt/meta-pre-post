@@ -98,3 +98,23 @@ fg2 <- md(fg_mean_int_d, fg_mean_con_d, fg_sd_int_d, fg_sd_con_d, fg_n_int, fg_n
 fg2$es <- round(fg2$es, 0)
 fg2 |> get_ci()  
 # also near match
+
+# deliberately select an effect size that has a point estimate equal to 0
+# Grandjean et al. (1996)
+# 0.000 [-21.902, 21.902]
+# back calculate var:
+(((21.902*2)*0.5)/abs(qnorm(0.025)))^2
+
+# using data from Tab 2 (TC)
+# from the data it is clear that change score were used
+md(200.9-180.1, 205.5-185.4, 28.7, 37.1, 20, 17) |> get_ci()
+md(200.9-180.1, 205.5-185.4, sd_avg(33.9, 28.7), sd_avg(37.8, 37.1), 20, 17) |> get_ci()
+md(200.9-180.1, 205.5-185.4, 28.7, 37.1, 20, 17) |> get_ci()
+md(round(200.9-180.1, 0), round(205.5-185.4, 0), 28.7, 37.1, 20, 17) |> get_ci()
+md(201-180, 206-185, 29, 37, 20, 17) |> get_ci()
+md(201-180, 206-185, sd_avg(34, 29), sd_avg(38, 37), 20, 17) |> get_ci()
+md(201-180, 206-185, sd_avg(33.9, 28.7), sd_avg(37.8, 37.1), 20, 17) |> get_ci()
+md(201-180, 206-185, 29, 37, 20, 17) |> get_ci()
+
+((r_to_sdd(33.9, 28.7, 0.5)^2)/20)+((r_to_sdd(37.8, 37.1, 0.5)^2)/17)
+((32^2)/20)+((37^2)/17)

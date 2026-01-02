@@ -49,3 +49,33 @@ smd(mean(low), mean(high), sd(low), sd(high), 8, 8) |> get_ci()
 # I looked into all studies in the forest plot and none of them provides
 # PGC1-alpha data outside of plots, so I think it is not possible to recalculate
 # the ES here
+
+# Jensen et al. (2015)
+# 6.06 [3.22, 8.93]
+smd(444, 264, 24, 31, 8, 7) |> get_ci()
+# somewhat near for point estimate
+smd(732, 666, 28, 43, 8, 7) |> get_ci()
+smcr(444, 264, 24, 31, 13, 0.5) |> get_ci()
+smd(732-444, 666-264, r_to_sdd(28,24,0.85), r_to_sdd(43, 31,0.85), 8, 7) |> get_ci()
+
+# Steinberg et al. (2006)
+# target ES: 7.25 [3.91, 10.59]
+smd(390, 150, 37, 31, 7, 7, vartype = 3) |> get_ci()
+# no match
+
+# another try: Wojtaszewski et al. (2002)
+# target ES: 13.13 [7.80, 18.46]
+
+# using data from results section
+# data is presented as mean ± SE (!)
+# if we ignore this:
+smd(163, 909, 12, 75, 8, 8, vartype = 3) |> get_ci() # revman variance estimator
+# perfect match (SE/SD mixup)
+
+# next try: Psilander et al. (2013)
+# target ES: 13.29 [8.61, 17.97]
+# using data from Tab 2 (Gly, Post-test exercise)
+# data is presented as mean ± SE (!)
+# if we ignore this:
+smd(130, 477, 17, 31, 10, 10, vartype = 3) |> get_ci()
+# perfect match (SE/SD mixup)

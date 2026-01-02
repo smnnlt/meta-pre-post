@@ -11,8 +11,8 @@ library(metapp)
 
 # Wolfenden 2019 reports in Tab 2 under other measures sedentary time in min
 
-n_int <- 97
-n_con <- 89
+n_int <- 89
+n_con <- 97
 
 # if we use mean sedentary time in min and the mean activity times in min we 
 # can calculate sedentary time as a mean percentage
@@ -28,16 +28,5 @@ sd_con <- 41.57 / totaltime_con # matches 12.11% from forest plot
 
 # recalculate MD as stated in the text
 metapp::md(mean_int, mean_con, sd_int, sd_con, n_int, n_con) |> get_ci()
-# almost exactly, only 0.01% of for the lower CI
-# maybe use rounded values instead (here in percentage)
-metapp::md(67.18, 70.87, 11.41, 12.11, n_int, n_con) |> get_ci()
-# same issue, no both CI bounds of by 0.01%
-
-# maybe assume homogenous variances for the var estimator
-metapp::md(67.18, 70.87, 11.41, 12.11, n_int, n_con, var_homo = TRUE) |> get_ci()
-# perfect match!
-
-# just test for the non-rounded values
-metapp::md(mean_int, mean_con, sd_int, sd_con, n_int, n_con, var_homo = TRUE) |> get_ci()
-# also perfect match!
-
+# perfect match
+# also var_homo = FALSE confirmed

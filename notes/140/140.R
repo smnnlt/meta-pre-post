@@ -34,3 +34,16 @@ smd(mean_int, mean_con, sd_int, sd_con, n_int, n_con) |> get_ci()
 
 smd(7.00, 8.44, 2.03, 3.73, 23, 27) |> get_ci()
 # perfect match!
+
+# try another to verify: Field et al. (2012)
+# target ES: 0.40 [-0.13, 0.93]
+
+# using data from Table 1 Anxiety (STAI), Yoga vs. Control
+# sample size data per group not reported, so we assume equally sized groups 
+# (total N = 84), so n = 28 per group which is in line with the MA Tab S3
+smd(42.60, 38.96, 8.85, 9.11, 28, 28) |> get_ci()
+# perfect match
+
+# again, both pre and post measures were presented, so we can confidently state 
+# that preferably post measures were used for the calculation
+

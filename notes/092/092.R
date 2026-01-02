@@ -5,6 +5,14 @@ library(metapp)
 # Study to recalculate: Cuesta-Vargas et al. 2011
 # target ES: -0.083 [-0.634, 0.469]
 
+# [EDIT DURING PARALLEL EXTRACTION AUDIT]:
+# During checking the parallel extractions, both researchers independently
+# evaluating this study (TS and SN) tried to find the correct recalculation
+# method together, as both could not get a matching recalculation by themselves.
+# Together they could verify the actual method used as SMD of change scores
+# (correlation of 0.5) with post score SD standardization (with B&H var 
+# estimator)
+
 # directly use change score data from Tab 4
 smd(-36.1, -34.1, 25.1, 26, 23, 23) |> get_ci()
 # not exact
@@ -27,7 +35,9 @@ mean_con_d <- mean_con_post - mean_con_pre
 mean_int_d <- mean_int_post - mean_int_pre
 sd_con_d <- r_to_sdd(sd_con_pre, sd_con_post, 0.5)
 sd_int_d <- r_to_sdd(sd_int_pre, sd_int_post, 0.5)
-smd(mean_int_d, mean_con_d, sd_int_d, sd_con_d, 23, 23) |> get_ci()
+
+# using post score SD as standardized
+smd(mean_int_d, mean_con_d, sd_int_post, sd_con_post, 25, 24, vartype = 2) |> get_ci()
 # not exact
 
 # unsure why this is the case, because Tab S1 shows that the same data was 
@@ -46,8 +56,10 @@ m_sd_con_pre <- 1.77
 
 m_mean_int_post <- 3.43
 m_sd_int_post <- 1.55
-m_mean_con_post <- 5.57
-m_sd_con_post <- 0.85
+m_mean_con_post <- 5.64
+m_sd_con_post <- 1.28
+#m_mean_con_post <- 5.57
+#m_sd_con_post <- 0.85
 
 m_mean_int_d <- m_mean_int_post - m_mean_int_pre
 m_mean_con_d <- m_mean_con_post - m_mean_con_pre
@@ -55,13 +67,8 @@ m_mean_con_d <- m_mean_con_post - m_mean_con_pre
 m_sd_int_d <- r_to_sdd(m_sd_int_pre, m_sd_int_post, 0.5)
 m_sd_con_d <- r_to_sdd(m_sd_con_pre, m_sd_con_post, 0.5)
 smd(m_mean_int_d, m_mean_con_d, m_sd_con_d, m_sd_int_d, 14, 14) |> get_ci()
-# no exact match
-
-# use pre sd
 smd(m_mean_int_d, m_mean_con_d, m_sd_con_pre, m_sd_int_pre, 14, 14) |> get_ci()
-# no
-# use average sd
-smd(m_mean_int_d, m_mean_con_d, sd_avg(m_sd_int_pre, m_sd_int_post), sd_avg(m_sd_con_pre, m_sd_con_post), 14, 14) |> get_ci()
-#no
-
-# could not reproduce
+# all not exact
+# post SD standardization with vartype = 2
+smd(m_mean_int_d, m_mean_con_d, m_sd_con_post, m_sd_int_post, 14, 14, vartype = 2) |> get_ci()
+# perfect match
