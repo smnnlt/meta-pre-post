@@ -2,6 +2,10 @@
 
 library(metapp)
 
+# EDIT AFTER REVISITING:
+# I could recalculate both MD effect sizes by using var_homo=TRUE and using
+# change scores with imputed correlation for the variance calculation
+
 # Study to recalculate: Bjerre et al. 2019
 # target ES: -754.00 [-2298.57, 790.57]
 
@@ -44,14 +48,14 @@ mean_con_d <- mean_con_post - mean_con_pre
 
 # calculate MD
 # using pre score SD
-md(mean_int_d, mean_con_d, sd_int_pre, sd_con_pre, n_int, n_con) |> get_ci()
+md(mean_int_d, mean_con_d, sd_int_pre, sd_con_pre, n_int, n_con, var_homo = TRUE) |> get_ci()
 # estimate matches (but wrong direction!), CI does not match
 
 # try imputed change score SD (although this is not what the MA methods say)
-md(mean_int_d, mean_con_d, r_to_sdd(sd_int_pre, sd_int_post, 0.7), r_to_sdd(sd_con_pre, sd_con_post, 0.7), n_int, n_con) |> get_ci()
-# near but no match
+md(mean_int_d, mean_con_d, r_to_sdd(sd_int_pre, sd_int_post, 0.7), r_to_sdd(sd_con_pre, sd_con_post, 0.7), n_int, n_con, var_homo = TRUE) |> get_ci()
+# perfect match!
 
-# hm, try next study instead, but I have to use a different forest plot:
+# try next study from a different forest plot:
 # using study 1 from forest plot MA Fig 3: Andersen et al. 2014
 # target ES: 4.50 [-0.12, 9.12]
 
@@ -88,7 +92,9 @@ md(a_mean_int_d, a_mean_con_d, a_sd_int_pre, a_sd_con_pre, a_n_int, a_n_con) |> 
 md(a_mean_int_d, a_mean_con_d, a_sd_int_post, a_sd_con_post, a_n_int, a_n_con) |> get_ci()
 # ES point estimate match, CI off
 
-# I could not reproduce the CI for the MD ES
+# using change score SD:
+md(a_mean_int_d, a_mean_con_d, r_to_sdd(a_sd_int_pre, a_sd_int_post, 0.7), r_to_sdd(a_sd_con_pre, a_sd_con_post, 0.7), a_n_int, a_n_con, var_homo = TRUE) |> get_ci()
+# perfect match!
 
 # Now I will try to reproduce the SMD ES as presented in forest plot MA Fig 4
 # study to recalculate: Sundstrup et al. 2016
