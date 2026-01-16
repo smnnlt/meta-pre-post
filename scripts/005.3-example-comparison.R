@@ -98,7 +98,7 @@ new$n[1] <- s_pre3$n
 # new$mean_post[20] <- sp_post_int$x
 # new$sd_post[20] <- sp_post_int$sd
 
-# remove Seles-Peres running data from IPD
+# remove Seles-Peres cycling data from IPD
 ipd <- ipd[ipd$type != "cycling",]
 
 ## STEP 2: Effect size calculation----------------------------------------------

@@ -3,6 +3,7 @@
 ## written by Simon Nolte in 08/2025
 
 library(metapp)
+library(ggplot2)
 
 # read data from similar studies analysed by Rosenblat et al. (2025)
 ros <- read.csv("data/example/rosenblat.csv")
@@ -20,3 +21,11 @@ weighted.mean(ros$r, ros$n, na.rm = TRUE)
 # median
 median(ros$r, na.rm = TRUE)
 #> 0.88
+
+ggplot(ros, aes(x = r)) +
+  geom_histogram(binwidth = 0.1, center = 0.05, color = "black") +
+  geom_rug(alpha = 0.5) +
+  labs(x = "Pre-post correlation", y = "Count") +
+  theme_minimal()
+
+ggsave("plots/cor_distribution.png", width = 5, height = 3.5, dpi = 300, bg = "white")

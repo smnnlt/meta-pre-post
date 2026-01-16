@@ -1,6 +1,6 @@
 ## Script for the meta-pre-post project
 ## Script #3: Extraction Agreement
-## written by Simon Nolte in 07/2025
+## written by Simon Nolte in 07/2025 and 01/2026
 
 # This script organizes and analyzes the parallel extraction procedure
 
@@ -68,3 +68,18 @@ sort(p_ids)
 
 #-----------------------------------------------------------------------------
 # PART 2: Agreement Analysis
+
+# import results from parallel extraction
+db <- read.csv("data/double.csv")
+db$code <- rep.int(c(1,2), 20)
+
+# restructure data to one study per row
+dbr <- tidyr::pivot_wider(db, id_cols = study_id, names_from = code, values_from = -study_id)
+
+# compare extracted data for reporting
+a_read <- sum(dbr$read_calctype_1 == dbr$read_calctype_2)
+# compare extracted data for recalculation
+a_calc <- sum(dbr$recalc_calctype_1 == dbr$recalc_calctype_2)
+
+# agreement rate
+(a_read + a_calc) / (nrow(dbr) * 2)
