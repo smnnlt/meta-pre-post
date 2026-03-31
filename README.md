@@ -1,5 +1,7 @@
 # Effect Size Calculation Procedures in Exercise Intervention Meta-Analyses: A Scoping Review
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19350871.svg)](https://doi.org/10.5281/zenodo.19350871)
+
 A meta-research project in sport science. Read the preregistration on the [OSF](https://doi.org/10.17605/OSF.IO/JX54S). You can use `renv` to reproduce the analysis.
 
 ## Background & Aim
