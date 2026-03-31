@@ -12,7 +12,7 @@ This project aims to map current practices for determining effect sizes in two-g
 
 ## Repository Structure
 
-`data/`: Contains the raw and processed data used in the analyses. See the data README for more details.
+`data/`: Contains the data used in the analyses. See the data README for more details.
 
 `notes/`: Contains the individual study recalculations as .R files and (where sharing is possible) the article PDFs.
 
