@@ -112,7 +112,6 @@ One line per review
 - **sd.c**: Standard deviation for control group
 
 ### Extracted data from Rosenblat et al. (2025, Sports Med)
-`example/rosenblat.csv`: Rosenblat-style example file
 - **study**: Study label
 - **group**: Group label
 - **n**: Sample size for the group

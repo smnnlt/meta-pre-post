@@ -12,11 +12,15 @@ This project aims to map current practices for determining effect sizes in two-g
 
 ## Repository Structure
 
-`data/` - Contains the raw and processed data used in the analyses. See the data README for more details.
-`notes/` - Contains the individual study recalculations as .R files and (where sharing is possible) the article PDFs.
-`plots/` - Contains all graphs created during the project
-`preregistration/` - Contains the project's preregistration files
-`scripts/` - Contains all R scripts used for data processing and analysis in numbered order.
+`data/`: Contains the raw and processed data used in the analyses. See the data README for more details.
+
+`notes/`: Contains the individual study recalculations as .R files and (where sharing is possible) the article PDFs.
+
+`plots/`: Contains all graphs created during the project.
+
+`preregistration/`: Contains the project's preregistration files.
+
+`scripts/`: Contains all R scripts used for data processing and analysis in numbered order. See the script README for more details.
 
 ## License
 
