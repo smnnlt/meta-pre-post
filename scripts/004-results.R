@@ -1,6 +1,6 @@
 ## Script for the meta-pre-post project
 ## Script #4: Extraction Results
-## written by Simon Nolte in 01/2026
+## written by Simon Nolte in 01/2026, modified in 03/2026
 
 ## --------------- PART 1: Data import and study exclusion ---------------------
 
@@ -23,46 +23,46 @@ nrow(d)
 # count number of studies the calculation method could be determined for
 clear <- sum(d$status != "unclear")
 clear
-#> 91
+#> 90
 clear / nrow(d) # proportion
-#> 0.90
+#> 0.89
 
 unc <- sum(d$status == "unclear")
 unc
-#> 10
+#> 11
 unc / nrow(d)
-#> 0.10
+#> 0.11
 # reason for non-determination
 table(d$status_explanation[d$status == "unclear"])
-#> n = 5: no effect sizes available
+#> n = 6: no effect sizes available
 #> n = 5: procedure unclear
 
 # calculation methods (change/post/ANCOVA)
 table(d$recalc_calctype)
 #> change score: n = 64
-#> post-measures: n = 29
-#> unclear/NULL: 8
+#> post-measures: n = 28
+#> unclear/NULL: 9
 
 # percentage values (denominator: all studies with methods determined)
 prop.table(table(d$recalc_calctype[!d$recalc_calctype %in% c("NULL", "unclear")]))
-#> change score: 0.69
-#> post-measures: 0.31
-binom::binom.confint(64, 93, methods = "agresti-coull")
-#> [0.59, 0.77]
-binom::binom.confint(29, 93, methods = "agresti-coull")
-#> [0.23, 0.41]
+#> change score: 0.70
+#> post-measures: 0.30
+binom::binom.confint(64, 92, methods = "agresti-coull")
+#> [0.60, 0.78]
+binom::binom.confint(28, 92, methods = "agresti-coull")
+#> [0.22, 0.40]
 
 # SMD or MD (we do not have this as a direct field and use hedges=YY instead, 
 # because hedges=NA implies MD)
 table(d$hedges, useNA = "always")
 #> SMD (hedges=TRUE + hedges=FALSE): 72
-#> MD (hedges=NA): 21
+#> MD (hedges=NA): 20
 # proportions (denominator: all studies with methods determined)
 prop.table(table(d$hedges[d$hedges != "unclear"], useNA = "always"))
-#> SMD: 77%
-#> MD: 23%
-binom::binom.confint(72, 93, methods = "agresti-coull")
-binom::binom.confint(21, 93, methods = "agresti-coull")
+#> SMD: 78%
+#> MD: 22%
+binom::binom.confint(72, 92, methods = "agresti-coull")
+binom::binom.confint(20, 92, methods = "agresti-coull")
 
 # used Hedges?
 table(d$hedges)
@@ -105,22 +105,18 @@ prop.table(table(dimp[dimp != "unclear"]))
 binom::binom.confint(21, 48, methods = "agresti-coull")
 binom::binom.confint(11, 48, methods = "agresti-coull")
 
-# variance estimators used
-table(d$varestimator)
-prop.table(table(d$varestimator[d$status != "unclear"]))
-
 ##-------------------------- PART 3: Issues found ------------------------------
 
 # create combined issue variable
 d$issues <- paste(d$error_extraction, d$error_calculation, d$error_reporting, sep = "-")
 table(d$issues)
 #> unclear-unclear-unclear: 11 (will be excluded)
-#> none-none-none: 41
+#> none-none-none: 39
 # major issues: 
 sum(grepl("major", d$issues))
 #> 27
 # none-none-none
-41 / 101
+39 / 101
 
 # breakdown of issues (for S6):
 table(d$error_extraction)
@@ -145,14 +141,32 @@ sum(d$justification != "none")
 sum(d$justification != "none") / nrow(d)
 binom::binom.confint(62, 101, methods = "agresti-coull")
 
+# reported whether SMD had Hedges' correction
+table(d$report_hedges, useNA = "always")
+prop.table(table(d$report_hedges))
+binom::binom.confint(41, 82, methods = "agresti-coull")
+#> 0.50 [0.39, 0.61]
+
+# reporting of correlation imputation
+table(d$report_imputation, useNA = "always")
+prop.table(table(d$report_imputation))
+binom::binom.confint(31, 83, methods = "agresti-coull")
+#> 0.37 [0.28, 0.48]
+
+# reporting of variance estimator
+table(d$report_varestimator, useNA = "always")
+prop.table(table(d$report_varestimator))
+binom::binom.confint(9, 101, methods = "agresti-coull")
+#> 0.09 [0.05, 0.16]
+
 # reporting judgement
 table(d$reporting)
-#> complete: 22
+#> complete: 23
 prop.table(table(d$reporting[d$status != "unclear"]))
 #> complete: 0.25
-binom::binom.confint(22, 90, methods = "agresti-coull")
+binom::binom.confint(23, 91, methods = "agresti-coull")
 
 # incorrect reporting
 table(d$error_reporting)
 prop.table(table(d$error_reporting[d$error_reporting != "unclear"]))
-binom::binom.confint(14, 90, methods = "agresti-coull")
+binom::binom.confint(14, 91, methods = "agresti-coull")
