@@ -5,6 +5,13 @@
 # Comparing different effect size calculation methods for the MA from Oliveira 
 # et al. (Fig1)
 
+# NOTE: this script cannot be fully reproduced, because we do not have the
+# permission to share the IPD we have been provided. You can still rund the
+# script, but the ANCOVA estimated from IPD will not be directly computed. The
+# original analysis runs with the flag `private <- TRUE`
+
+private <- file.exists("data/example/ipd_sim.csv")
+
 # load packages
 library(meta)    # running the meta-analyses
 library(metapp)  # effect size calculation
@@ -15,7 +22,9 @@ library(lme4)
 
 # load data
 ex <- read.csv("data/example/extracted.csv") # extracted data from the original studies
-ipd <- read.csv("data/example/ipd_sim.csv") # shared/simulated individual participant data
+if (private) {
+  ipd <- read.csv("data/example/ipd_sim.csv") # shared/simulated individual participant data
+}
 
 # function to calculate ANCOVA based effect size
 anc2 <- function(subset, data) {
@@ -99,7 +108,7 @@ new$n[1] <- s_pre3$n
 # new$sd_post[20] <- sp_post_int$sd
 
 # remove Seles-Peres cycling data from IPD
-ipd <- ipd[ipd$type != "cycling",]
+if (private) ipd <- ipd[ipd$type != "cycling",]
 
 ## STEP 2: Effect size calculation----------------------------------------------
 
@@ -125,7 +134,16 @@ ies$ppc1_09 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$
 ies$ppc2_05 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$sd_pre_int, sd2pre = w$sd_pre_con, n1 = w$n_int, n2 = w$n_con, r = 0.5, type = 2)
 ies$ppc2_09 <- ppc(x1d = w$mean_change_int, x2d = w$mean_change_con, sd1pre = w$sd_pre_int, sd2pre = w$sd_pre_con, n1 = w$n_int, n2 = w$n_con, r = 0.9, type = 2)
 # ancova
-ies$anc2 <- purrr::list_rbind(lapply(paste0(tolower(w$name), w$year), anc2, data = ipd))
+if (private) {
+  ies$anc2 <- purrr::list_rbind(lapply(paste0(tolower(w$name), w$year), anc2, data = ipd))
+} else { # manually give the data here
+  ies$anc2 <- df <- data.frame(
+    es = c(0.68050646, 0.69078013, 0.05644153, 0.31094975, 0.24282096,
+           0.05213826, 0.18703672, -0.50918093, 0.32653180, -0.25214194),
+    var = c(0.05460013, 0.09800664, 0.06560974, 0.04691996, 0.03191217,
+            0.05242230, 0.02977604, 0.07017747, 0.03531309, 0.18166867)
+  )
+}
 
 ## STEP 3: Run meta-analyses----------------------------------------------------
 m <- lapply(ies, function(x) metafor::rma(x$es, x$var))

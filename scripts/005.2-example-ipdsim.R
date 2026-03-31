@@ -2,6 +2,9 @@
 ## Script #5.2: Simulate missing IPD for ANCOVA estimates
 ## written by Simon Nolte in 10/2025
 
+# NOTE: this script cannot be independently reproduced, because we do not have 
+# the permission to share the IPD we have been provided.
+
 # set random seed
 set.seed(4711)
 library(MASS)

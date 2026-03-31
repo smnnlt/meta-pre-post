@@ -83,3 +83,4 @@ a_calc <- sum(dbr$recalc_calctype_1 == dbr$recalc_calctype_2)
 
 # agreement rate
 (a_read + a_calc) / (nrow(dbr) * 2)
+#> 0.6
