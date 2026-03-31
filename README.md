@@ -1,6 +1,6 @@
-# Quantifying Change: Challenges and Strategies in Effect Size Determination for Exercise Intervention Meta-Analyses
+# Effect Size Calculation Procedures in Exercise Intervention Meta-Analyses: A Scoping Review
 
-A meta-research project in sport science. Read the preregistration on the [OSF](https://doi.org/10.17605/OSF.IO/JX54S).
+A meta-research project in sport science. Read the preregistration on the [OSF](https://doi.org/10.17605/OSF.IO/JX54S). You can use `renv` to reproduce the analysis.
 
 ## Background & Aim
 
@@ -11,6 +11,12 @@ A common research design in exercise intervention studies, the two-group pre-pos
 This project aims to map current practices for determining effect sizes in two-group pre-post measurement meta-analyses of exercise interventions and to compare different methods using a case study.
 
 ## Repository Structure
+
+`data/` - Contains the raw and processed data used in the analyses. See the data README for more details.
+`notes/` - Contains the individual study recalculations as .R files and (where sharing is possible) the article PDFs.
+`plots/` - Contains all graphs created during the project
+`preregistration/` - Contains the project's preregistration files
+`scripts/` - Contains all R scripts used for data processing and analysis in numbered order.
 
 ## License
 
